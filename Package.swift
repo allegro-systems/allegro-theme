@@ -8,8 +8,8 @@ let package = Package(
         .library(name: "AllegroTheme", targets: ["AllegroTheme"]),
     ],
     dependencies: [
-        .package(path: "../../score"),
-        .package(path: "../score-lucide"),
+        .package(url: "https://github.com/allegro-systems/score.git", branch: "main"),
+        .package(url: "https://github.com/allegro-systems/score-lucide.git", branch: "main"),
     ],
     targets: [
         .target(
