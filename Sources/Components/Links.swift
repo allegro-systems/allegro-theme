@@ -16,8 +16,8 @@ public struct ActionLink {
     }
 
     public var body: some Node {
-        let vPad = large ? 12 : 8
-        let hPad = large ? 24 : 12
+        let vPad: Double = large ? 12 : 8
+        let hPad: Double = large ? 24 : 12
         if isPrimary {
             Link(to: destination) { label }
                 .font(.sans, size: 13, weight: .medium, color: .bg, decoration: TextDecoration.none)
