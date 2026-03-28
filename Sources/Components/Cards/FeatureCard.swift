@@ -1,7 +1,34 @@
 import Score
 import ScoreLucide
 
-/// A feature showcase card with icon, title, and description.
+/// A feature showcase card with a Lucide icon, title, and description.
+///
+/// Renders a bordered card on a surface background. The `large` variant
+/// uses bigger padding and places the icon inline with the title.
+///
+/// ```swift
+/// FeatureCard(
+///     icon: "zap",
+///     title: "Instant Deploys",
+///     description: "Push to deploy in under 10 seconds.",
+///     accentColor: .stage
+/// )
+///
+/// // Large variant for hero feature grids
+/// FeatureCard(
+///     icon: "code",
+///     title: "Swift-Native",
+///     description: "Write your entire stack in Swift.",
+///     large: true
+/// )
+/// ```
+///
+/// - Parameters:
+///   - icon: Lucide icon name (e.g. "zap", "code", "globe").
+///   - title: The card heading.
+///   - description: A short explanation rendered in mono font.
+///   - accentColor: Icon color. Defaults to `.accent`.
+///   - large: When `true`, uses larger padding and inline icon+title layout.
 @Component
 public struct FeatureCard {
     let icon: String

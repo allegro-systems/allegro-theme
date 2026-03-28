@@ -1,7 +1,18 @@
 import Score
 import ScoreLucide
 
-/// A dark/light mode toggle button.
+/// A dark/light mode toggle button with sun and moon icons.
+///
+/// Persists the user's preference via the `.theme` storage key so the
+/// choice survives page reloads. Place it in your header's trailing slot.
+///
+/// ```swift
+/// AppHeader(
+///     leading: { SiteLogo() },
+///     center: { /* nav */ },
+///     trailing: { ThemeToggle() }
+/// )
+/// ```
 @Component
 public struct ThemeToggle {
     @State(persisted: .theme) var isDark = false

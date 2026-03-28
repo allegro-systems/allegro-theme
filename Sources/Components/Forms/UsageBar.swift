@@ -23,6 +23,13 @@ public struct UsageBar {
     let fillColor: ColorToken
     let trackColor: ColorToken
 
+    /// Creates a usage bar using an ID prefix for the fill and label elements.
+    ///
+    /// - Parameters:
+    ///   - title: The label shown above the bar (e.g. "Storage", "Bandwidth").
+    ///   - idPrefix: Common prefix. Fill ID becomes `"\(idPrefix)-fill"`, label ID becomes `"\(idPrefix)-label"`.
+    ///   - fillColor: Color of the fill bar. Defaults to `.accent`.
+    ///   - trackColor: Color of the track background. Defaults to `.surface`.
     public init(title: String, idPrefix: String, fillColor: ColorToken = .accent, trackColor: ColorToken = .surface) {
         self.title = title
         self.fillId = "\(idPrefix)-fill"
@@ -31,6 +38,14 @@ public struct UsageBar {
         self.trackColor = trackColor
     }
 
+    /// Creates a usage bar with explicit element IDs.
+    ///
+    /// - Parameters:
+    ///   - title: The label shown above the bar.
+    ///   - fillId: HTML `id` for the fill element (set its width via JS to update).
+    ///   - labelId: HTML `id` for the value label element (set its textContent via JS).
+    ///   - fillColor: Color of the fill bar. Defaults to `.accent`.
+    ///   - trackColor: Color of the track background. Defaults to `.surface`.
     public init(title: String, fillId: String, labelId: String, fillColor: ColorToken = .accent, trackColor: ColorToken = .surface) {
         self.title = title
         self.fillId = fillId

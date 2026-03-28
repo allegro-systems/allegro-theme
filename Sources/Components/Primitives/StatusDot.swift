@@ -1,6 +1,19 @@
 import Score
 
-/// A generic colored status indicator with dot and label.
+/// A colored dot + label status indicator.
+///
+/// Renders an 8pt colored circle followed by a label, both in the given color.
+/// Use with the theme status tokens for consistent state representation.
+///
+/// ```swift
+/// StatusDot(label: "Running", color: .statusActive)
+/// StatusDot(label: "Error", color: .statusError)
+/// StatusDot(label: "Idle", color: .statusInactive)
+/// ```
+///
+/// - Parameters:
+///   - label: The status text shown next to the dot.
+///   - color: Color applied to both the dot and the label text.
 @Component
 public struct StatusDot {
     let label: String

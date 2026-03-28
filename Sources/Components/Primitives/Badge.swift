@@ -1,6 +1,18 @@
 import Score
 
-/// A small colored badge for labels like plan names, tags, etc.
+/// A small colored badge for plan names, tags, and status labels.
+///
+/// Renders compact inline text with a colored background and rounded corners.
+///
+/// ```swift
+/// Badge(label: "Pro", textColor: .bg, background: .accent)
+/// Badge(label: "Beta", textColor: .muted, background: .elevated)
+/// ```
+///
+/// - Parameters:
+///   - label: The badge text.
+///   - textColor: Text color. Defaults to `.text`.
+///   - background: Background color. Defaults to `.surface`.
 @Component
 public struct Badge {
     let label: String

@@ -1,12 +1,22 @@
 import Score
 import ScoreLucide
 
-/// A language picker dropdown that reads its locale list from the
-/// application's ``Localization`` configuration.
+/// A hover-activated language picker dropdown for multi-locale sites.
 ///
-/// When placed inside a page that has a ``LocalizationContext``, the dropdown
-/// automatically lists every supported locale with its native display name
-/// (e.g. "Français", "Deutsch") and links to the locale-prefixed path.
+/// Reads the locale list from the application's ``Localization`` configuration
+/// via ``LocalizationContext``. Each supported locale is listed with its native
+/// display name (e.g. "Francais", "Deutsch") and links to the locale-prefixed path.
+///
+/// ```swift
+/// AppHeader(
+///     leading: { SiteLogo() },
+///     center: { /* nav */ },
+///     trailing: {
+///         LanguageDropdown()
+///         ThemeToggle()
+///     }
+/// )
+/// ```
 @Component
 public struct LanguageDropdown {
 

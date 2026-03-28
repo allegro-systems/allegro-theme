@@ -1,6 +1,18 @@
 import Score
 
-/// A styled submit/action button.
+/// A primary action button with accent background.
+///
+/// Renders a `<button type="button">` with the theme accent color. Use in
+/// forms and action panels where a prominent call-to-action is needed.
+///
+/// ```swift
+/// SubmitButton(label: "Save Changes", id: "save-btn")
+/// ```
+///
+/// - Parameters:
+///   - label: The button text.
+///   - id: Optional HTML `id` attribute.
+///   - onclick: Optional inline click handler (prefer `@Action` when possible).
 @Component
 public struct SubmitButton {
     let label: String
@@ -27,7 +39,19 @@ public struct SubmitButton {
     }
 }
 
-/// A full-width submit button variant.
+/// A full-width variant of ``SubmitButton``.
+///
+/// Identical styling to ``SubmitButton`` but stretches to 100% of its
+/// container width. Useful for login forms and modal actions.
+///
+/// ```swift
+/// SubmitButtonWide(label: "Send Magic Link", id: "magic-link-btn")
+/// ```
+///
+/// - Parameters:
+///   - label: The button text.
+///   - id: Optional HTML `id` attribute.
+///   - onclick: Optional inline click handler (prefer `@Action` when possible).
 @Component
 public struct SubmitButtonWide {
     let label: String
@@ -55,7 +79,19 @@ public struct SubmitButtonWide {
     }
 }
 
-/// A secondary/outline action button.
+/// A secondary action button with outline styling.
+///
+/// Renders a bordered button on a surface background with muted text.
+/// Use alongside ``SubmitButton`` for lower-priority actions like "Cancel".
+///
+/// ```swift
+/// SecondaryButton(label: "Cancel", id: "cancel-btn")
+/// ```
+///
+/// - Parameters:
+///   - label: The button text.
+///   - id: Optional HTML `id` attribute.
+///   - onclick: Optional inline click handler (prefer `@Action` when possible).
 @Component
 public struct SecondaryButton {
     let label: String

@@ -1,7 +1,24 @@
 import Score
 
-/// A page hero section with a large serif heading, optional muted description,
-/// and optional back link. Used for top-of-page headers across dashboard-style apps.
+/// A page hero section with a large serif heading, subtitle, and optional back link.
+///
+/// Renders a padded section at the top of dashboard-style pages with a large
+/// serif title, optional muted subtitle, and optional back navigation.
+///
+/// ```swift
+/// // Simple page title
+/// PageHero("Overview")
+///
+/// // Title with subtitle
+/// PageHero("App Details", subtitle: "myapp.allegro.systems")
+///
+/// // With back navigation
+/// PageHero("Build #42",
+///     subtitle: "Started 2 minutes ago",
+///     backTo: "/apps/myapp/builds",
+///     backLabel: "< All Builds"
+/// )
+/// ```
 @Component
 public struct PageHero {
     let title: String
@@ -12,6 +29,16 @@ public struct PageHero {
     let titleId: String
     let subtitleId: String
 
+    /// Creates a page hero section.
+    ///
+    /// - Parameters:
+    ///   - title: The large heading text.
+    ///   - subtitle: Optional muted description text below the title.
+    ///   - destination: Optional back-link URL. When non-empty, a ``BackLink`` is rendered.
+    ///   - backLabel: Text for the back link (e.g. "< All Apps").
+    ///   - backLinkId: Optional HTML `id` for the back link.
+    ///   - titleId: Optional HTML `id` for the heading element.
+    ///   - subtitleId: Optional HTML `id` for the subtitle element.
     public init(
         _ title: String,
         subtitle: String = "",

@@ -1,6 +1,26 @@
 import Score
 
-/// A styled action link with primary/secondary variants.
+/// A styled action link with primary and secondary variants.
+///
+/// The primary variant renders with an accent background; the secondary uses
+/// a bordered outline. Both support a `large` size for hero call-to-actions.
+///
+/// ```swift
+/// // Primary (filled) action link
+/// ActionLink(to: "/signup", label: "Get Started")
+///
+/// // Secondary (outlined) action link
+/// ActionLink(to: "/docs", label: "Read Docs", primary: false)
+///
+/// // Large hero variant
+/// ActionLink(to: "/signup", label: "Start Free", large: true)
+/// ```
+///
+/// - Parameters:
+///   - destination: The URL path this link navigates to.
+///   - label: The link text.
+///   - primary: When `true` (default), renders with accent background. When `false`, uses outline.
+///   - large: When `true`, applies extra padding for hero sections. Defaults to `false`.
 @Component
 public struct ActionLink {
     let destination: String
@@ -36,7 +56,19 @@ public struct ActionLink {
     }
 }
 
-/// A detail page action link with outline styling.
+/// An outline-styled action link for detail pages.
+///
+/// Renders a bordered link with elevated background, suitable for
+/// secondary actions on detail/show pages (e.g. "Edit", "View Logs").
+///
+/// ```swift
+/// DetailActionLink(to: "/apps/myapp/settings", label: "Settings")
+/// ```
+///
+/// - Parameters:
+///   - destination: The URL path this link navigates to.
+///   - label: The link text.
+///   - id: Optional HTML `id` attribute.
 @Component
 public struct DetailActionLink {
     let destination: String
@@ -63,7 +95,19 @@ public struct DetailActionLink {
     }
 }
 
-/// A back navigation link.
+/// A minimal back-navigation link with muted styling.
+///
+/// Renders as plain muted text with no decoration. Typically used above
+/// page titles to link back to a parent listing.
+///
+/// ```swift
+/// BackLink(to: "/apps", label: "< Back to Apps")
+/// ```
+///
+/// - Parameters:
+///   - destination: The URL path to navigate back to.
+///   - label: The link text (e.g. "< Back to Apps").
+///   - id: Optional HTML `id` attribute.
 @Component
 public struct BackLink {
     let destination: String
@@ -85,7 +129,18 @@ public struct BackLink {
     }
 }
 
-/// An upgrade/call-to-action link with accent background.
+/// An upgrade call-to-action link with accent background.
+///
+/// Similar to a primary ``ActionLink`` but with semibold weight, designed
+/// for plan upgrade prompts in sidebar bottom sections and settings pages.
+///
+/// ```swift
+/// UpgradeLink(to: "/billing/upgrade", label: "Upgrade to Pro")
+/// ```
+///
+/// - Parameters:
+///   - destination: The URL path to the upgrade/billing page.
+///   - label: The link text.
 @Component
 public struct UpgradeLink {
     let destination: String

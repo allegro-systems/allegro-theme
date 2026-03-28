@@ -1,6 +1,19 @@
 import Score
 
-/// An inline product label with a colored border.
+/// An inline product label with a colored border pill.
+///
+/// Renders the product name in a bordered pill using the product's accent
+/// color for both text and border. Used on marketing pages and feature grids
+/// to tag content by product.
+///
+/// ```swift
+/// ProductPill("Score", color: .score)
+/// ProductPill("Stage", color: .stage)
+/// ```
+///
+/// - Parameters:
+///   - name: The product name to display.
+///   - color: The product's accent color token (e.g. `.score`, `.stage`).
 @Component
 public struct ProductPill {
     let name: String

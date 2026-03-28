@@ -1,6 +1,26 @@
 import Score
 
-/// A documentation card linking to a docs section.
+/// A documentation section card with accent bar, title, and optional link.
+///
+/// Similar to ``ProductCard`` but tailored for documentation listings.
+/// Supports a `filled` variant that uses a surface background instead of
+/// the default page background, and a `comingSoon` flag for unreleased docs.
+///
+/// ```swift
+/// DocCard(
+///     title: "Getting Started",
+///     description: "Install Score and create your first app.",
+///     accentColor: .score,
+///     link: "/docs/getting-started"
+/// )
+///
+/// DocCard(
+///     title: "Deployment Guide",
+///     description: "Deploy to Stage from the CLI.",
+///     accentColor: .stage,
+///     comingSoon: true
+/// )
+/// ```
 @Component
 public struct DocCard {
     let title: String
@@ -10,6 +30,15 @@ public struct DocCard {
     let comingSoon: Bool
     let filled: Bool
 
+    /// Creates a documentation card.
+    ///
+    /// - Parameters:
+    ///   - title: The documentation section heading.
+    ///   - description: A short summary of the docs section.
+    ///   - accentColor: Color for the top bar and "Read Docs" link.
+    ///   - link: Optional destination URL. When set, the card becomes clickable.
+    ///   - comingSoon: Shows a ``ComingSoonBadge`` and dims the text. Defaults to `false`.
+    ///   - filled: Uses `.surface` background instead of `.bg`. Defaults to `false`.
     public init(
         title: String,
         description: String,

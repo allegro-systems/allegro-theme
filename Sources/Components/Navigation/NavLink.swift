@@ -3,11 +3,20 @@ import ScoreLucide
 
 /// A navigation link used in sidebars, nav menus, headers, and footers.
 ///
-/// Supports two styles:
-/// - **Sidebar style** (default): icon + label with background, padding, and hover effects.
-/// - **Inline style**: text-only link with no chrome — omit `icon` and set `style: .inline`.
+/// Supports two visual styles and optional localization. The sidebar style
+/// renders an icon + label with background, padding, and hover effects.
+/// The inline style renders a minimal text link with no chrome.
 ///
-/// Labels can be localized by setting `localized: true`, which wraps the label in `Localized()`.
+/// ```swift
+/// // Sidebar style (default) with icon
+/// NavLink(to: "/apps", icon: "grid", label: "Apps", active: true)
+///
+/// // Inline style for header/footer links
+/// NavLink(to: "/about", label: "About", style: .inline)
+///
+/// // Localized label
+/// NavLink(to: "/docs", icon: "book", label: "nav.docs", localized: true)
+/// ```
 @Component
 public struct NavLink {
     /// Visual style of the nav link.
@@ -28,6 +37,18 @@ public struct NavLink {
     var localized: Bool = false
     var style: Style = .sidebar
 
+    /// Creates a navigation link.
+    ///
+    /// - Parameters:
+    ///   - destination: The URL path this link navigates to.
+    ///   - icon: Optional Lucide icon name shown before the label (sidebar style only).
+    ///   - label: The visible text (or localization key when `localized` is `true`).
+    ///   - active: Highlights the link as the current page. Defaults to `false`.
+    ///   - font: Font family for the label. Defaults to `.sans`.
+    ///   - size: Font size in points. Defaults to `14`.
+    ///   - color: Override color. When `nil`, uses `.text` if active, `.muted` otherwise.
+    ///   - localized: Wraps the label in `Localized()` for i18n. Defaults to `false`.
+    ///   - style: Visual style -- `.sidebar` (padded with icon) or `.inline` (text only).
     public init(
         to destination: String,
         icon: String? = nil,
