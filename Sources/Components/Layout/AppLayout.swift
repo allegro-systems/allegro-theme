@@ -1,8 +1,10 @@
 import Score
 
-/// A full-page layout wrapper with header, main content, and footer.
+/// A full-page layout wrapper with header, scrollable main content, and footer.
 ///
-/// Usage:
+/// Renders a vertical flex column that stretches to at least 100vh. The main
+/// content area grows to fill available space between the header and footer.
+///
 /// ```swift
 /// AppLayout(
 ///     header: { SiteHeader() },
@@ -17,6 +19,12 @@ public struct AppLayout<HeaderContent: Node, FooterContent: Node, MainContent: N
     let footer: FooterContent
     let mainContent: MainContent
 
+    /// Creates a full-page layout.
+    ///
+    /// - Parameters:
+    ///   - header: The page header (typically an ``AppHeader``).
+    ///   - footer: The page footer (typically an ``AppFooter``).
+    ///   - content: The main page content rendered inside a `<main>` element.
     public init(
         @NodeBuilder header: () -> HeaderContent,
         @NodeBuilder footer: () -> FooterContent,
@@ -31,7 +39,7 @@ public struct AppLayout<HeaderContent: Node, FooterContent: Node, MainContent: N
         Stack {
             header
             Main { mainContent }
-                .flexItem(grow: 1)
+                .flex(grow: 1)
             footer
         }
         .flex(.column)

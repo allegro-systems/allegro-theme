@@ -1,16 +1,27 @@
 import Score
 
-/// A consistent app header shell with configurable slots:
-/// leading (logo), center (navigation), trailing (actions),
-/// and an optional mobile slot visible only on compact screens.
+/// A consistent app header shell with configurable slots.
 ///
-/// Usage:
+/// Provides four slots -- leading (logo), center (navigation), trailing (actions),
+/// and an optional mobile slot visible only on compact screens. The center and
+/// trailing slots are automatically hidden on compact viewports.
+///
 /// ```swift
 /// AppHeader(
 ///     leading: { SiteLogo() },
 ///     center: { Navigation { ... } },
 ///     trailing: { ThemeToggle() },
 ///     mobile: { MobileMenu() }
+/// )
+/// ```
+///
+/// Omit the `mobile` parameter when no compact-only content is needed:
+///
+/// ```swift
+/// AppHeader(
+///     leading: { SiteLogo() },
+///     center: { NavLink(to: "/docs", icon: "book", label: "Docs") },
+///     trailing: { ThemeToggle() }
 /// )
 /// ```
 @Component
@@ -20,6 +31,13 @@ public struct AppHeader<Leading: Node, Center: Node, Trailing: Node, Mobile: Nod
     let trailing: Trailing
     let mobile: Mobile
 
+    /// Creates an app header with all four slots.
+    ///
+    /// - Parameters:
+    ///   - leading: Content for the left slot (typically a logo or home link).
+    ///   - center: Content for the center slot (typically navigation links). Hidden on compact.
+    ///   - trailing: Content for the right slot (typically actions like theme toggle). Hidden on compact.
+    ///   - mobile: Content shown only on compact screens (e.g. a hamburger menu).
     public init(
         @NodeBuilder leading: () -> Leading,
         @NodeBuilder center: () -> Center,
@@ -35,15 +53,15 @@ public struct AppHeader<Leading: Node, Center: Node, Trailing: Node, Mobile: Nod
     public var body: some Node {
         Header {
             Stack { leading }
-                .flexItem(grow: 1)
+                .flex(grow: 1)
 
             Stack { center }
-                .flexItem(grow: 1)
+                .flex(grow: 1)
                 .compact { $0.hidden() }
 
             Stack { trailing }
                 .flex(.row, gap: 12, align: .center, justify: .end)
-                .flexItem(grow: 1)
+                .flex(grow: 1)
                 .compact { $0.hidden() }
 
             mobile

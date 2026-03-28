@@ -1,8 +1,11 @@
 import Score
 
-/// A sidebar navigation panel with top nav and optional bottom section.
+/// A fixed-width sidebar navigation panel with logo, nav links, and a bottom section.
 ///
-/// Usage:
+/// Renders a 240pt-wide `<aside>` with a right border, divided into a top group
+/// (logo + nav) and a bottom group (plan badge, settings, etc.) separated by
+/// `justify: .spaceBetween`.
+///
 /// ```swift
 /// AppSidebar(
 ///     logo: { Link(to: "/") { Text { "Stage" } } },
@@ -16,6 +19,12 @@ public struct AppSidebar<Logo: Node, Nav: Node, Bottom: Node> {
     let nav: Nav
     let bottom: Bottom
 
+    /// Creates a sidebar panel.
+    ///
+    /// - Parameters:
+    ///   - logo: Top-left branding content (logo, product name link).
+    ///   - nav: Navigation links, typically a list of ``NavLink`` components.
+    ///   - bottom: Bottom section content (plan badge, user info, settings link).
     public init(
         @NodeBuilder logo: () -> Logo,
         @NodeBuilder nav: () -> Nav,
@@ -40,7 +49,7 @@ public struct AppSidebar<Logo: Node, Nav: Node, Bottom: Node> {
         }
         .flex(.column, justify: .spaceBetween)
         .size(width: 240, minHeight: .percent(100))
-        .flexItem(shrink: 0)
+        .flex(shrink: 0)
         .padding(24, at: .vertical)
         .padding(20, at: .horizontal)
         .background(.surface)
@@ -48,9 +57,12 @@ public struct AppSidebar<Logo: Node, Nav: Node, Bottom: Node> {
     }
 }
 
-/// A sidebar + main content layout with optional auth gate.
+/// A sidebar + main content layout with optional client-side auth gate.
 ///
-/// Usage:
+/// Renders a horizontal flex row that fills the viewport. When `authGated`
+/// is `true`, a client-side script redirects unauthenticated visitors
+/// (no `session` cookie) to `/login`.
+///
 /// ```swift
 /// SidebarLayout(authGated: true) {
 ///     DashboardSidebar()
@@ -64,6 +76,13 @@ public struct SidebarLayout<Sidebar: Node, MainContent: Node> {
     let mainContent: MainContent
     let authGated: Bool
 
+    /// Creates a sidebar layout.
+    ///
+    /// - Parameters:
+    ///   - authGated: When `true`, injects a client-side redirect to `/login`
+    ///     for unauthenticated visitors. Defaults to `false`.
+    ///   - sidebar: The sidebar content (typically an ``AppSidebar``).
+    ///   - content: The main content area rendered inside a `<main>` element.
     public init(
         authGated: Bool = false,
         @NodeBuilder sidebar: () -> Sidebar,
@@ -82,7 +101,7 @@ public struct SidebarLayout<Sidebar: Node, MainContent: Node> {
             sidebar
             Main { mainContent }
                 .flex(.column, gap: 0)
-                .flexItem(grow: 1)
+                .flex(grow: 1)
                 .overflow(y: .auto)
                 .size(minHeight: .percent(100))
         }
@@ -94,11 +113,11 @@ public struct SidebarLayout<Sidebar: Node, MainContent: Node> {
 
 // SCORE-GAP: client-side auth redirect
 private let authGateScript = """
-<script>
-(function() {
-  if (document.cookie.indexOf('session=') === -1 && window.location.pathname !== '/login') {
-    window.location.replace('/login');
-  }
-})();
-</script>
-"""
+    <script>
+    (function() {
+      if (document.cookie.indexOf('session=') === -1 && window.location.pathname !== '/login') {
+        window.location.replace('/login');
+      }
+    })();
+    </script>
+    """

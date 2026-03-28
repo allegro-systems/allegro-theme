@@ -1,9 +1,11 @@
 import Score
 
-/// A consistent app footer with three columns: branding, navigation, and actions,
-/// plus an optional copyright row.
+/// A consistent app footer with three columns and an optional copyright row.
 ///
-/// Usage:
+/// Provides leading (branding), center (navigation links), and trailing (actions)
+/// columns that collapse into a single centered column on compact screens.
+/// An optional `copyright` slot renders a small line below the columns.
+///
 /// ```swift
 /// AppFooter(
 ///     leading: { SiteLogo(); Paragraph { "Tagline" } },
@@ -20,6 +22,13 @@ public struct AppFooter<Leading: Node, Center: Node, Trailing: Node, CopyrightCo
     let trailing: Trailing
     let copyrightContent: CopyrightContent
 
+    /// Creates an app footer.
+    ///
+    /// - Parameters:
+    ///   - leading: Left column content (logo, tagline).
+    ///   - center: Center column content (navigation links).
+    ///   - trailing: Right column content (social icons, actions).
+    ///   - copyright: Optional bottom row (copyright text). Pass `EmptyNode` to omit.
     public init(
         @NodeBuilder leading: () -> Leading,
         @NodeBuilder center: () -> Center,
@@ -37,17 +46,17 @@ public struct AppFooter<Leading: Node, Center: Node, Trailing: Node, CopyrightCo
             Stack {
                 Stack { leading }
                     .flex(.column, gap: 8, align: .start)
-                    .flexItem(grow: 1, basis: 0)
+                    .flex(grow: 1, basis: 0)
                     .compact { $0.flex(.column, gap: 8, align: .center) }
 
                 Stack { center }
                     .flex(.row, gap: 24, align: .start, justify: .center)
-                    .flexItem(grow: 1, basis: 0)
+                    .flex(grow: 1, basis: 0)
                     .compact { $0.flex(.column, gap: 12, align: .center) }
 
                 Stack { trailing }
                     .flex(.row, align: .start, justify: .end)
-                    .flexItem(grow: 1, basis: 0)
+                    .flex(grow: 1, basis: 0)
             }
             .flex(.row, align: .start, justify: .spaceBetween)
             .compact { $0.flex(.column, gap: 24, align: .center) }
