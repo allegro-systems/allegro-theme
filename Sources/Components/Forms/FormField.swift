@@ -43,7 +43,7 @@ public struct FormField {
                 .font(.sans, size: 14, color: .text)
                 .background(.elevated)
                 .border(width: 1, color: .border, style: .solid)
-                .radius(6)
+                .border(radius:6)
                 .outline(width: 0, style: .none, color: .border)
                 .placeholder { $0.font(color: .muted) }
         }

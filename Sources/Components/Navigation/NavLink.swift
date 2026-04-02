@@ -47,7 +47,7 @@ public struct NavLink {
     ///   - font: Font family for the label. Defaults to `.sans`.
     ///   - size: Font size in points. Defaults to `14`.
     ///   - color: Override color. When `nil`, uses `.text` if active, `.muted` otherwise.
-    ///   - localized: Wraps the label in `Localized()` for i18n. Defaults to `false`.
+    ///   - localized: Wraps the label in `t()` for i18n. Defaults to `false`.
     ///   - style: Visual style -- `.sidebar` (padded with icon) or `.inline` (text only).
     public init(
         to destination: String,
@@ -78,7 +78,7 @@ public struct NavLink {
     @NodeBuilder
     var labelContent: some Node {
         if localized {
-            Localized(label)
+            t(label)
         } else {
             Text { label }
         }
@@ -97,7 +97,7 @@ public struct NavLink {
             .font(font, size: size, color: resolvedColor, decoration: TextDecoration.none)
             .padding(12, at: .horizontal)
             .padding(10, at: .vertical)
-            .radius(8)
+            .border(radius:8)
             .background(active ? .elevated : .surface)
             .hover { $0.background(.elevated).font(color: .text) }
 

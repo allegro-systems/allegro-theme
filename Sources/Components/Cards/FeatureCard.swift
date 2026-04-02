@@ -64,10 +64,10 @@ public struct FeatureCard {
             Paragraph { description }
                 .font(.mono, size: 13, lineHeight: 1.6, color: .muted)
         }
-        .flex(.column, gap: 12)
-        .padding(large ? 32 : 24, at: .vertical)
-        .padding(large ? 28 : 24, at: .horizontal)
+        .flex(.column, gap: 8)
+        .padding(large ? 28 : 20, at: .vertical)
+        .padding(large ? 24 : 20, at: .horizontal)
         .background(.surface)
-        .border(width: 1, color: .border, style: .solid, radius: large ? 0 : 8)
+        .border(width: 1, color: .border, style: .solid, radius: 8)
     }
 }

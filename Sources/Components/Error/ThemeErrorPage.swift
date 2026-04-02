@@ -66,7 +66,7 @@ public struct ThemeErrorPage {
                     .padding(10, at: .vertical)
                     .padding(20, at: .horizontal)
                     .border(width: 1, color: .border, style: .solid)
-                    .radius(4)
+                    .border(radius:4)
                     .hover { $0.background(.elevated) }
                     .animate(.fadeIn, duration: 0.6, delay: 0.45)
             }

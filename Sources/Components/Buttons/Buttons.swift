@@ -35,7 +35,7 @@ public struct SubmitButton {
         .padding(10, at: .horizontal)
         .padding(8, at: .vertical)
         .background(.accent)
-        .radius(6)
+        .border(radius:6)
     }
 }
 
@@ -74,7 +74,7 @@ public struct SubmitButtonWide {
         .padding(12, at: .horizontal)
         .padding(10, at: .vertical)
         .background(.accent)
-        .radius(6)
+        .border(radius:6)
         .size(width: .percent(100))
     }
 }
@@ -114,7 +114,7 @@ public struct SecondaryButton {
         .padding(8, at: .horizontal)
         .padding(6, at: .vertical)
         .background(.surface)
-        .radius(6)
+        .border(radius:6)
         .border(width: 1, color: .border, style: .solid)
     }
 }

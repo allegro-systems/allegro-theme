@@ -12,7 +12,7 @@ import Score
 ///     center: { Navigation { Link(to: "/about") { "About" } } },
 ///     trailing: { Icon("github", size: 20) }
 /// ) copyright: {
-///     Localized("footer.copyright")
+///     t("footer.copyright")
 /// }
 /// ```
 @Component

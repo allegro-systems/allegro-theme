@@ -30,11 +30,12 @@ public struct ThemeToggle {
             .flex(.row, gap: 6, align: .center)
         }
         .on(.click, action: "toggleTheme")
+        .accessibility(label: "Toggle theme")
         .cursor(.pointer)
         .border(width: 0, color: .border, style: .none)
         .padding(6, at: .vertical)
         .padding(10, at: .horizontal)
         .background(.elevated)
-        .radius(20)
+        .border(radius:20)
     }
 }

@@ -69,11 +69,11 @@ public struct UsageBar {
                 Stack {}
                     .htmlAttribute("id", fillId)
                     .size(height: 6)
-                    .radius(3)
+                    .border(radius:3)
                     .background(fillColor)
             }
             .size(height: 6)
-            .radius(3)
+            .border(radius:3)
             .background(trackColor)
         }
         .flex(.column, gap: 6)

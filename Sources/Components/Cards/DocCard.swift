@@ -80,9 +80,8 @@ public struct DocCard {
                     .font(.mono, size: 13, weight: .medium, color: accentColor)
             }
         }
-        .flex(.column, gap: 14)
-        .padding(28)
-        .size(minHeight: 180)
+        .flex(.column, gap: 8)
+        .padding(24)
         .background(filled ? .surface : .bg)
         .border(width: 1, color: .border, style: .solid, radius: 8)
         .hover { $0.border(width: 1, color: accentColor, style: .solid) }

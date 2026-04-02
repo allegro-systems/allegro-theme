@@ -381,7 +381,7 @@ public struct AuthFormPanel {
                 .size(width: .percent(100))
                 .padding(14, at: .vertical)
                 .background(config.accentColor)
-                .radius(8)
+                .border(radius:8)
                 .border(width: 0, color: .border, style: .none)
                 .hover { $0.opacity(0.85) }
             }

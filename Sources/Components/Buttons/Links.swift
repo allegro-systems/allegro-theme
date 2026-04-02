@@ -43,14 +43,14 @@ public struct ActionLink {
                 .font(.sans, size: 13, weight: .medium, color: .bg, decoration: TextDecoration.none)
                 .padding(vPad, at: .vertical).padding(hPad, at: .horizontal)
                 .background(.accent)
-                .radius(6)
+                .border(radius:6)
                 .hover { $0.opacity(0.85) }
         } else {
             Link(to: destination) { label }
                 .font(.sans, size: 13, weight: .medium, color: .text, decoration: TextDecoration.none)
                 .padding(vPad, at: .vertical).padding(hPad, at: .horizontal)
                 .border(width: 1, color: .border, style: .solid)
-                .radius(6)
+                .border(radius:6)
                 .hover { $0.background(.elevated) }
         }
     }
@@ -90,7 +90,7 @@ public struct DetailActionLink {
         .padding(8, at: .horizontal)
         .padding(8, at: .vertical)
         .background(.elevated)
-        .radius(6)
+        .border(radius:6)
         .border(width: 1, color: .border, style: .solid)
     }
 }
@@ -159,6 +159,6 @@ public struct UpgradeLink {
         .padding(12, at: .horizontal)
         .padding(8, at: .vertical)
         .background(.accent)
-        .radius(6)
+        .border(radius:6)
     }
 }

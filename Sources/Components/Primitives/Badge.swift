@@ -31,6 +31,6 @@ public struct Badge {
             .background(background)
             .padding(4, at: .horizontal)
             .padding(2, at: .vertical)
-            .radius(4)
+            .border(radius:4)
     }
 }

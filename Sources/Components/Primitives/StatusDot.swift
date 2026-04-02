@@ -28,7 +28,7 @@ public struct StatusDot {
         Stack {
             Stack {}
                 .size(width: 8, height: 8)
-                .radius(4)
+                .border(radius:4)
                 .background(color)
             Text { label }
         }

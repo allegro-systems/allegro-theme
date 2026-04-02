@@ -80,8 +80,8 @@ public struct ProductCard {
                 Stack {}.flex(grow: 1)
             }
         }
-        .flex(.column, gap: 14)
-        .padding(28)
+        .flex(.column, gap: 8)
+        .padding(24)
         .background(.surface)
         .border(width: 1, color: .border, style: .solid, radius: 8)
         .hover { $0.border(width: 1, color: accentColor, style: .solid) }
