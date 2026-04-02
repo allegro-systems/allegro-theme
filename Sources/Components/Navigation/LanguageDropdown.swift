@@ -20,6 +20,10 @@ import ScoreLucide
 @Component
 public struct LanguageDropdown {
 
+    /// The current page path (e.g. "/score", "/about").
+    /// Used to construct locale-aware links that stay on the same page.
+    let pagePath: String
+
     private var currentLocale: String {
         LocalizationContext.current?.locale.identifier ?? "en"
     }
@@ -32,7 +36,9 @@ public struct LanguageDropdown {
         LocalizationContext.current?.localization.defaultLocale.identifier ?? "en"
     }
 
-    public init() {}
+    public init(pagePath: String = "/") {
+        self.pagePath = pagePath
+    }
 
     public var body: some Node {
         Stack {
@@ -52,26 +58,34 @@ public struct LanguageDropdown {
                 Stack {
                     for locale in supportedLocales {
                         let isActive = locale.identifier == currentLocale
-                        let href = locale.identifier == defaultLocale ? "/" : "/\(locale.identifier)/"
+                        let href = locale.identifier == defaultLocale ? pagePath : "/\(locale.identifier)\(pagePath)"
 
-                        Link(to: href) {
-                            Text { locale.displayName }
-                                .font(.mono, size: 13, color: isActive ? .accent : .text)
+                        if isActive {
+                            Link(to: href) { locale.displayName }
+                                .font(.sans, size: 13, weight: .medium, color: .text, decoration: TextDecoration.none)
+                                .display(.block)
+                                .padding(7, at: .vertical)
+                                .padding(14, at: .horizontal)
+                                .background(.elevated)
+                                .border(radius: 6)
+                        } else {
+                            Link(to: href) { locale.displayName }
+                                .font(.sans, size: 13, color: .text, decoration: TextDecoration.none)
+                                .display(.block)
+                                .padding(7, at: .vertical)
+                                .padding(14, at: .horizontal)
+                                .border(radius: 6)
+                                .hover { $0.background(.elevated).font(color: .text, decoration: TextDecoration.none) }
                         }
-                        .font(decoration: TextDecoration.none)
-                        .padding(6, at: .vertical)
-                        .padding(12, at: .horizontal)
-                        .hover { $0.background(.elevated) }
-                        .radius(4)
                     }
                 }
-                .flex(.column, gap: 2)
-                .padding(4)
+                .flex(.column, gap: 0)
+                .padding(6)
                 .background(.surface)
-                .border(width: 1, color: .border, style: .solid, radius: 8)
-                .size(width: 140)
+                .border(width: 1, color: .border, style: .solid, radius: 10)
+                .size(width: 160)
             }
-            .position(.absolute, top: 32, trailing: 0)
+            .position(.absolute, top: 36, trailing: 0)
             .zIndex(50)
             .showOnGroupHover()
         }
